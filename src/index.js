@@ -32,13 +32,23 @@ function asset(env, request, path) {
   return env.ASSETS.fetch(new Request(url, request));
 }
 
+// Create the table on first use, so there's no separate database setup step.
+let schemaReady = null;
+function ensureSchema(db) {
+  schemaReady ??= db.batch([
+    db.prepare("CREATE TABLE IF NOT EXISTS entries (id TEXT PRIMARY KEY, title TEXT NOT NULL DEFAULT '', body TEXT NOT NULL DEFAULT '', created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL)"),
+    db.prepare("CREATE INDEX IF NOT EXISTS idx_entries_updated ON entries(updated_at DESC)"),
+  ]).catch((e) => { schemaReady = null; throw e; });
+  return schemaReady;
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const { pathname } = url;
     const method = request.method;
 
-    if (!env.PASSWORD) return new Response("Set the PASSWORD secret: npx wrangler secret put PASSWORD", { status: 500 });
+    if (!env.PASSWORD) return new Response("Almost there: add a secret named PASSWORD (Cloudflare dashboard → this Worker → Settings → Variables and Secrets), then reload.", { status: 500 });
     const token = await sessionToken(env.PASSWORD);
     const secure = url.protocol === "https:" ? "; Secure" : "";
 
@@ -76,6 +86,7 @@ export default {
     if (!authed) return json({ error: "unauthorized" }, 401);
 
     // --- API ---
+    await ensureSchema(env.DB);
     const now = Date.now();
     const match = pathname.match(/^\/api\/entries(?:\/([\w-]+))?$/);
     if (!match) return json({ error: "not found" }, 404);

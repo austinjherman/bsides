@@ -1,4 +1,4 @@
-# Lyrics Journal
+# B-Sides
 
 A private, journal-style place to write lyrics. It runs as one Cloudflare Worker, stores entries in D1, and is protected by a password.
 
@@ -13,7 +13,7 @@ A private, journal-style place to write lyrics. It runs as one Cloudflare Worker
 2. Connect GitHub, then pick this repo. Keep the defaults (deploy command `npx wrangler deploy`) and click **Deploy**.
    The D1 database is created automatically on the first deploy, and the table is created on first use.
 3. Open the new Worker's **Settings → Variables and Secrets**. Add a **Secret** named `PASSWORD` with the password you want, then save.
-4. Visit `https://lyrics-journal.<your-subdomain>.workers.dev` and log in.
+4. Visit `https://bsides.<your-subdomain>.workers.dev` and log in.
 
 ## Or deploy from your computer
 

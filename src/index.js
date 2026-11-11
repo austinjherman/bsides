@@ -6,7 +6,7 @@ async function sessionToken(password) {
   const key = await crypto.subtle.importKey(
     "raw", new TextEncoder().encode(password), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]
   );
-  const sig = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode("lyrics-journal-session-v1"));
+  const sig = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode("bsides-session-v1"));
   return [...new Uint8Array(sig)].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
@@ -48,7 +48,7 @@ export default {
     const { pathname } = url;
     const method = request.method;
 
-    if (!env.PASSWORD) return new Response("Almost there: add a secret named PASSWORD (Cloudflare dashboard → this Worker → Settings → Variables and Secrets), then reload.", { status: 500 });
+    if (!env.PASSWORD) return new Response("Almost there: add a secret named PASSWORD (Cloudflare dashboard → the bsides Worker → Settings → Variables and Secrets), then reload.", { status: 500 });
     const token = await sessionToken(env.PASSWORD);
     const secure = url.protocol === "https:" ? "; Secure" : "";
 

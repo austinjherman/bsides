@@ -1,4 +1,4 @@
-name = "lyrics-journal"
+name = "bsides"
 main = "src/index.js"
 compatibility_date = "2025-10-01"
 
@@ -9,4 +9,4 @@ run_worker_first = true
 
 [[d1_databases]]
 binding = "DB"
-database_name = "lyrics-journal"
+database_name = "bsides"

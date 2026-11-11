@@ -1,5 +1,5 @@
 {
-  "name": "lyrics-journal",
+  "name": "bsides",
   "private": true,
   "scripts": {
     "dev": "wrangler dev",

@@ -1,0 +1,13 @@
+{
+  "name": "lyrics-journal",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:init": "wrangler d1 execute lyrics-journal --remote --file=schema.sql",
+    "db:init:local": "wrangler d1 execute lyrics-journal --local --file=schema.sql"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

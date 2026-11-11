@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lyrics Journal</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="app" id="app">
+  <aside>
+    <div class="side-head"><h1>Lyrics</h1><button class="new" id="new">+ New</button></div>
+    <input class="search" id="search" type="search" placeholder="Search lyrics…">
+    <div class="list" id="list"></div>
+    <div class="side-foot"><a href="/logout">Log out</a></div>
+  </aside>
+  <main>
+    <div class="bar">
+      <button class="menu" id="menu" aria-label="Entries">☰</button>
+      <span id="meta"></span><span class="spacer"></span>
+      <span id="status"></span>
+      <button id="delete" hidden>Delete</button>
+    </div>
+    <div class="page" id="page">
+      <div class="sheet" id="sheet" hidden>
+        <input id="title" placeholder="Untitled" autocomplete="off">
+        <textarea id="body" placeholder="Start writing…"></textarea>
+      </div>
+      <div class="blank" id="blank">Nothing here yet. Hit “+ New” and start writing.</div>
+    </div>
+  </main>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>

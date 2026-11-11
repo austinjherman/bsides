@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lyrics Journal</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="login">
+  <form method="post" action="/login">
+    <h1>Lyrics Journal</h1>
+    <input type="password" name="password" placeholder="Password" autofocus required>
+    <button type="submit">Open</button>
+    <div class="err" id="err"></div>
+  </form>
+</div>
+<script>if (location.search.includes("error")) document.getElementById("err").textContent = "Wrong password.";</script>
+</body>
+</html>

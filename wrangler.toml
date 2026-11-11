@@ -1,0 +1,14 @@
+name = "lyrics-journal"
+main = "src/index.js"
+compatibility_date = "2025-10-01"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "lyrics-journal"
+# Replace with the id printed by: npx wrangler d1 create lyrics-journal
+database_id = "REPLACE_ME"
